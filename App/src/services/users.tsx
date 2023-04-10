@@ -1,27 +1,24 @@
 import axios from "axios";
 
 export async function fetchData() {
-  let users = [];
-  try {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    users = response.data;
-  } catch (error) {
-    console.log(error);
-  }
-  return users;
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/users"
+  );
+  return response.data;
 }
 
-export async function getUserPost(id: any) {
+export async function getUserPost(id: number) {
   const response = await axios.get(
     `https://jsonplaceholder.typicode.com/posts?userId=${id}`
   );
   return response;
 }
-export async function updatePost(data: any, id: number) {
+export async function updatePost(data: object, id: number) {
   try {
-    const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, data);
+    const response = await axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      data
+    );
     console.log(response.data);
   } catch (error) {
     console.error(error);
