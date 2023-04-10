@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store";
 import { removePost, setPosts, upPost } from "../../features/postSlice";
 import { deletePost, getUserPost, updatePost } from "../../services/users";
+import Spinner from "../Spinner/Spinner";
 
 interface Post {
   id: number;
@@ -119,7 +120,7 @@ const Posts: React.FC = () => {
             </div>
           ))
         ) : (
-          <h2>Loading ....</h2>
+          <Spinner />
         )}
         <Modal
           title="Edit post"
