@@ -111,7 +111,7 @@ const Person: React.FC<User> = (props: any) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item>
+      <Form.Item className="buttons">
         <Button
           onClick={handleCancel}
           className="button"
