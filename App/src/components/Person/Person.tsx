@@ -18,17 +18,14 @@ const Person: React.FC<User> = (props: any) => {
   const [isFormChange, setIsFormChange] = useState(false);
 
   const dispatch = useAppDispatch();
-  // const users = useSelector((state: RootState) => state.user.data);
 
-  const handleFormChange = (values: any) => {
+  const handleFormChange = () => {
     setIsFormChange(true);
-    console.log("formchange");
-    // Validate(values)
   };
 
   useEffect(() => {
     setOriginalUser(user);
-    form.setFieldsValue(user); // set initial form values to user object
+    form.setFieldsValue(user);
   }, [user, form]);
 
   const handleCancel = () => {
@@ -37,15 +34,34 @@ const Person: React.FC<User> = (props: any) => {
   };
 
   const handleSubmit = () => {
-    form.validateFields().then((values) => {
-      const updatedUser = { ...originalUser, ...values };
+    form
+      .validateFields()
+      .then((values) => {
+        const updatedUser = { ...originalUser, ...values };
+        const { username, email, address } = values;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const validEmail = emailRegex.test(email);
 
-      dispatch(upUsers(updatedUser));
-      message.success("User updated successfully");
-      setIsFormChange(false);
-    });
+        if (username.length < 2) {
+          throw new Error("Username should be at least 2 characters long");
+        }
+        if (!validEmail) {
+          throw new Error("Invalid email");
+        }
+        if (address.street.length < 2 || address.suite.length < 2) {
+          throw new Error(
+            "Street and suite should be at least 2 characters long"
+          );
+        }
+        dispatch(upUsers(updatedUser));
+        message.success("User updated successfully");
+        setIsFormChange(false);
+      })
+      .catch((error) => {
+        message.error(error.message);
+      });
   };
-  console.log(user);
+
   return (
     <Form
       form={form}
@@ -111,7 +127,12 @@ const Person: React.FC<User> = (props: any) => {
         >
           Revert
         </Button>
-        <Button type="primary" className="button" disabled={!isFormChange}>
+        <Button
+          type="primary"
+          className="button"
+          onClick={handleSubmit}
+          disabled={!isFormChange}
+        >
           Submit
         </Button>
         <Link to={`/posts/${user.id}`} className="link">
