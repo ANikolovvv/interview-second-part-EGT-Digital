@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Person from "../Person/Person";
 import { fetchData } from "../../services/users";
 import { Collapse, List } from "antd";
@@ -29,7 +28,6 @@ const Home: React.FC = () => {
         handleError();
       }
     }
-
     getData();
   }, []);
 
