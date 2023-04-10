@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Posts from "./components/Posts/Post";
 
-function App() {
+const App:React.FC=()=> {
   return (
     <div className="App">
       <Routes>
