@@ -14,11 +14,16 @@
 <hr/>
 <h4 align="center"><i>Pages: </i></h3>
 - <i><b>Home page (users)</b></i>
+
 <p align="center">
-<img src="./home-page-close.png" width="350" title="hover text">
-<img src="./home-page-open.png" width="350" alt="accessibility text">
+<img src="./home-page-close.png" width="450" title="hover text">
+<img src="./home-page-open.png" width="450" alt="accessibility text">
 </p>
 <hr/>
 - <i><b>Posts page (user post)</b></i>
-<img src="./posts-page.png" width="350" title="hover text">
+
+<p align="center">
+<img src="./posts-page.png" width="450" title="hover text">
+<img src="./post.png" width="450" alt="accessibility text">
+</p>
 <hr/>
