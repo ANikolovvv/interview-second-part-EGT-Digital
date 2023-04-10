@@ -7,6 +7,7 @@ import Errors from "../Error/Error";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store";
 import { setUsers } from "../../features/userSlice";
+import Spinner from "../Spinner/Spinner";
 
 const { Panel } = Collapse;
 
@@ -51,7 +52,7 @@ const Home: React.FC = () => {
           )}
         />
       ) : (
-        <p>Loading...</p>
+        <Spinner/>
       )}
       {error === true && <Errors message={message}></Errors>}
     </>
