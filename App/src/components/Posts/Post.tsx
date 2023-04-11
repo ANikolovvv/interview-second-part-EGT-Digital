@@ -19,8 +19,9 @@ interface Post {
 const Posts: React.FC = () => {
   let { id } = useParams();
   let userId = Number(id);
+  const [noInfo, setInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
-
   const posts = useSelector((state: RootState) => state.post.data);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,9 +33,15 @@ const Posts: React.FC = () => {
       dispatch(setPosts(post));
     })();
   }, []);
+
   const fetchPosts = async () => {
     try {
       const { data } = await getUserPost(userId);
+      setLoading(false);
+
+      if (data.length === 0) {
+        setInfo(true);
+      }
       return data;
     } catch (error) {
       message.error("Error fetching posts");
@@ -70,11 +77,10 @@ const Posts: React.FC = () => {
     form
       .validateFields()
       .then((values) => {
-        console.log(values, "ok");
         handleEdit(values);
       })
       .catch((errorInfo) => {
-        console.log("Failed:", errorInfo);
+        message.error(errorInfo.message);
       });
   };
 
@@ -89,65 +95,71 @@ const Posts: React.FC = () => {
 
   return (
     <>
-      <h1>Posts</h1>
-      <Link to={`/`} className="link">
-        <ArrowLeftOutlined></ArrowLeftOutlined> Back Home
-      </Link>
-      <div className="container">
-        {posts.length > 0 ? (
-          posts.map((post) => (
-            <div key={post.id} className="box">
-              <h3>{post.title}</h3>
-              <Button className="button" onClick={() => showModal(post)}>
-                Edit
-              </Button>
-              <Button
-                className="button"
-                danger
-                onClick={() =>
-                  Modal.confirm({
-                    title: "Confirm",
-                    content: "Are you sure you want to delete this post?",
-                    okText: "Delete",
-                    okType: "danger",
-                    cancelText: "Cancel",
-                    onOk: () => handleDelete(post.id),
-                  })
-                }
+      <div className="box-posts">
+        <h1>Posts</h1>
+        <div className="box-link">
+          <Link to={`/`} className="link post">
+            <ArrowLeftOutlined></ArrowLeftOutlined> Back Home
+          </Link>
+        </div>
+        <div className="container">
+          {posts.length > 0 &&
+            noInfo === false &&
+            posts.map((post) => (
+              <div key={post.id} className={"box"}>
+                <h3>{post.title}</h3>
+                <Button className="button" onClick={() => showModal(post)}>
+                  Edit
+                </Button>
+                <Button
+                  className="button"
+                  danger
+                  onClick={() =>
+                    Modal.confirm({
+                      title: "Confirm",
+                      content: "Are you sure you want to delete this post?",
+                      okText: "Delete",
+                      okType: "danger",
+                      cancelText: "Cancel",
+                      onOk: () => handleDelete(post.id),
+                    })
+                  }
+                >
+                  Delete
+                </Button>
+              </div>
+            ))}
+          <Modal
+            title="Edit post"
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <Form form={form}>
+              <Form.Item name="id" hidden>
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Title"
+                name="title"
+                rules={[{ required: true, message: "Please enter a title" }]}
               >
-                Delete
-              </Button>
-            </div>
-          ))
-        ) : (
-          <Spinner />
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Body"
+                name="body"
+                rules={[{ required: true, message: "Please enter a body" }]}
+              >
+                <TextArea />
+              </Form.Item>
+            </Form>
+          </Modal>
+        </div>
+        {noInfo === true && loading === false && (
+          <h1>The user don't have a posts!</h1>
         )}
-        <Modal
-          title="Edit post"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <Form form={form}>
-            <Form.Item name="id" hidden>
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Title"
-              name="title"
-              rules={[{ required: true, message: "Please enter a title" }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Body"
-              name="body"
-              rules={[{ required: true, message: "Please enter a body" }]}
-            >
-              <TextArea />
-            </Form.Item>
-          </Form>
-        </Modal>
+        {loading === true && <Spinner />}
       </div>
     </>
   );
