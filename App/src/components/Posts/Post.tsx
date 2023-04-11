@@ -99,7 +99,7 @@ const Posts: React.FC = () => {
         <h1>Posts</h1>
         <div className="box-link">
           <Link to={`/`} className="link post">
-            <ArrowLeftOutlined></ArrowLeftOutlined> Back Home
+            <ArrowLeftOutlined className="arrow"/> Back Home
           </Link>
         </div>
         <div className="container">
