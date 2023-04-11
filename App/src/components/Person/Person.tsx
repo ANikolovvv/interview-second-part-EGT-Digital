@@ -1,7 +1,6 @@
 import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store";
+import { useAppDispatch } from "../../store";
 
 import { upUsers } from "../../features/userSlice";
 
@@ -105,9 +104,9 @@ const Person: React.FC<User> = (props: any) => {
         <Input />
       </Form.Item>
       <Form.Item
-        label="Address"
+        label="City"
         name={["address", "city"]}
-        rules={[{ required: true, message: "Address is required" }]}
+        rules={[{ required: true, message: "City is required" }]}
       >
         <Input />
       </Form.Item>
@@ -119,14 +118,7 @@ const Person: React.FC<User> = (props: any) => {
         >
           Cancel
         </Button>
-        <Button
-          type="primary"
-          className="button"
-          onClick={handleSubmit}
-          disabled={!isFormChange}
-        >
-          Revert
-        </Button>
+
         <Button
           type="primary"
           className="button"
@@ -136,9 +128,10 @@ const Person: React.FC<User> = (props: any) => {
           Submit
         </Button>
         <Link to={`/posts/${user.id}`} className="link">
-          See Posts
-        </Link>
+        See Posts
+      </Link>
       </Form.Item>
+      
     </Form>
   );
 };
