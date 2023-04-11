@@ -8,13 +8,13 @@ body {
 }
 
 .link {
+  display: inline;
   color: #081018;
-  border: 2px solid rgb(132, 132, 132);
-  padding: 5px 10px;
+  border: 1px solid rgb(132, 132, 132);
+  padding: 5.5px 10px;
   background-color: transparent;
   text-decoration: none;
   border-radius: 5px;
-  margin-left: 20px;
 }
 
 .link:hover {
@@ -24,13 +24,13 @@ body {
 }
 
 .button {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
 }
 .buttons {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   gap: 40px;
 }
@@ -44,8 +44,16 @@ body {
   letter-spacing: 1px;
 }
 .names {
-  font-size: 18px;
-  color: red;
+  margin-top: 40px;
+  width: 60%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  color: #0a385d;
+  font-size: 16px;
 }
 .container {
   margin: 20px;
@@ -57,10 +65,30 @@ body {
   gap: 20px;
 }
 .box {
+  flex-basis: calc(50% - 10px); /* Two posts in a row with 20px gap in between */
+  min-height: 150px; 
   border: 2px solid grey;
   border-radius: 5px;
   padding: 10px 10px;
 }
+.box:hover{
+  color: #40a9ff;
+  background-color: #081018;
+}
+.box-posts {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.box-posts > h1 {
+  margin-bottom: 10px;
+  padding: 0;
+}
+
 .loading-container {
   margin-top: 40px;
   display: flex;
