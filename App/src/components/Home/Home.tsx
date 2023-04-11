@@ -14,6 +14,9 @@ const { Panel } = Collapse;
 const Home: React.FC = () => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [noInfo, setInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useAppDispatch();
   const users = useSelector((state: RootState) => state.user.data);
 
@@ -21,6 +24,11 @@ const Home: React.FC = () => {
     async function getData() {
       try {
         const data = await fetchData();
+        setLoading(false);
+        
+        if (data.length === 0) {
+          setInfo(true);
+        }
         dispatch(setUsers(data));
       } catch (error: Error | any) {
         let message: string = error.message;
@@ -40,20 +48,21 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {users.length > 0 ? (
+      {users.length > 0 && noInfo === false && (
         <List
+          className="names"
           dataSource={users}
           renderItem={(user) => (
-            <Collapse className="names">
+            <Collapse>
               <Panel header={user.name} key={user.id}>
                 <Person user={user} />
               </Panel>
             </Collapse>
           )}
         />
-      ) : (
-        <Spinner/>
       )}
+      {noInfo === true && loading === false && <h1>We don't have a users!</h1>}
+      {loading === true && <Spinner />}
       {error === true && <Errors message={message}></Errors>}
     </>
   );
