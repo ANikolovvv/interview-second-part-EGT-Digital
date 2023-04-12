@@ -6,12 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.arrow {
-  text-align: center;
-  font-size: 12px; /* Set desired font size */
-  width: 12px; /* Set desired width */
-  height: 12px; /* Set desired height */
-}
+
 .link {
   display: inline;
   color: #081018;
@@ -47,67 +42,8 @@ body {
   padding: 10px 15px;
   letter-spacing: 1px;
 }
-.names {
-  margin-top: 40px;
-  width: 60%;
-  color: #224;
-  background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center /
-    cover no-repeat fixed;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
+
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   color: #ededed;
   font-size: 16px;
-}
-.container {
-  width: 80%;
-  margin: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-.box {
-  flex-basis: calc(
-    50% - 10px
-  ); /* Two posts in a row with 20px gap in between */
-  min-height: 150px;
-  padding: 10px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
-}
-
-.box-posts {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #224;
-  background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center /
-    cover no-repeat fixed;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-.box-posts > h1 {
-  margin-bottom: 10px;
-  padding: 0;
-  color: aliceblue;
-}
-
-.loading-container {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
