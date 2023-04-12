@@ -9,6 +9,7 @@ import { RootState, useAppDispatch } from "../../store";
 import { removePost, setPosts, upPost } from "../../features/postSlice";
 import { deletePost, getUserPost, updatePost } from "../../services/users";
 import Spinner from "../Spinner/Spinner";
+import styles from "./Posts.module.css";
 
 interface Post {
   id: number;
@@ -95,24 +96,24 @@ const Posts: React.FC = () => {
 
   return (
     <>
-      <div className="box-posts">
-        <h1>Posts</h1>
-        <div className="box-link">
-          <Link to={`/`} className="link post">
-            <ArrowLeftOutlined className="arrow"/> Back Home
+      <div className={styles["box-posts"]}>
+        <h1 className={styles["title"]}>Posts</h1>
+        <div className={styles["box-link"]}>
+          <Link to={`/`} className={styles["link-post"]}>
+            <ArrowLeftOutlined className={styles["arrow"]} /> Back Home
           </Link>
         </div>
-        <div className="container">
+        <div className={styles["container"]}>
           {posts.length > 0 &&
             noInfo === false &&
             posts.map((post) => (
-              <div key={post.id} className={"box"}>
+              <div key={post.id} className={styles["box"]}>
                 <h3>{post.title}</h3>
                 <Button className="button" onClick={() => showModal(post)}>
                   Edit
                 </Button>
                 <Button
-                  className="button"
+                  className={"button"}
                   danger
                   onClick={() =>
                     Modal.confirm({
