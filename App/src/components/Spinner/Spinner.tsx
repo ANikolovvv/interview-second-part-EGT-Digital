@@ -1,5 +1,5 @@
 import { Spin } from "antd";
-import styles from './Spinner.module.css'
+import styles from "./Spinner.module.css";
 const Spinner: React.FC = () => {
   return (
     <div className={styles["loading-container"]}>
