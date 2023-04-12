@@ -128,10 +128,9 @@ const Person: React.FC<User> = (props: any) => {
           Submit
         </Button>
         <Link to={`/posts/${user.id}`} className="link">
-        See Posts
-      </Link>
+          See Posts
+        </Link>
       </Form.Item>
-      
     </Form>
   );
 };
