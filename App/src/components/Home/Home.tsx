@@ -50,7 +50,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div className={styles["container-home"]}>
-        <h1 className={styles["title"]} >Users</h1>
+        <h1 className={styles["title"]}>Users</h1>
         {users.length > 0 && noInfo === false && (
           <List
             dataSource={users}
