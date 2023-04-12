@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store";
 import { setUsers } from "../../features/userSlice";
 import Spinner from "../Spinner/Spinner";
+import styles from "./Home.module.css";
 
 const { Panel } = Collapse;
 
@@ -25,7 +26,7 @@ const Home: React.FC = () => {
       try {
         const data = await fetchData();
         setLoading(false);
-        
+
         if (data.length === 0) {
           setInfo(true);
         }
@@ -48,22 +49,26 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {users.length > 0 && noInfo === false && (
-        <List
-          className="names"
-          dataSource={users}
-          renderItem={(user) => (
-            <Collapse>
-              <Panel header={user.name} key={user.id}>
-                <Person user={user} />
-              </Panel>
-            </Collapse>
-          )}
-        />
-      )}
-      {noInfo === true && loading === false && <h1>We don't have a users!</h1>}
-      {loading === true && <Spinner />}
-      {error === true && <Errors message={message}></Errors>}
+      <div className={styles["container-home"]}>
+        <h1 className={styles["title"]} >Users</h1>
+        {users.length > 0 && noInfo === false && (
+          <List
+            dataSource={users}
+            renderItem={(user) => (
+              <Collapse>
+                <Panel header={user.name} key={user.id}>
+                  <Person user={user} />
+                </Panel>
+              </Collapse>
+            )}
+          />
+        )}
+        {noInfo === true && loading === false && (
+          <h1>We don't have a users!</h1>
+        )}
+        {loading === true && <Spinner />}
+        {error === true && <Errors message={message}></Errors>}
+      </div>
     </>
   );
 };
