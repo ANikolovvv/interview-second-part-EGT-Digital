@@ -16,14 +16,14 @@
 - <i><b>Home page (users)</b></i>
 
 <p align="center">
-<img src="./home-page-close.png" width="450" title="hover text">
-<img src="./home-page-open.png" width="450" alt="accessibility text">
+<img src="./home-close.png" width="450" title="hover text">
+<img src="./home-open.png" width="450" alt="accessibility text">
 </p>
 <hr/>
 - <i><b>Posts page (user post)</b></i>
 
 <p align="center">
-<img src="./posts-page.png" width="450" title="hover text">
-<img src="./post.png" width="450" alt="accessibility text">
+<img src="./posts.png" width="450" title="hover text">
+<img src="./edit.png" width="450" alt="accessibility text">
 </p>
 <hr/>
