@@ -6,6 +6,7 @@
 <h4 align="center"><i>Stack: </i></h3>
 
 - <i><b> React with Typescript</b></i>
+- <i><b> Router - react-router</b></i>
 - <i><b>State management - Redux and redux-toolkit</b></i>
 - <i><b>Axios</b></i>
 - <i><b>Antd</b></i>
