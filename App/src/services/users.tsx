@@ -14,15 +14,11 @@ export async function getUserPost(id: number) {
   return response;
 }
 export async function updatePost(data: object, id: number) {
-  try {
-    const response = await axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${id}`,
-      data
-    );
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.put(
+    `https://jsonplaceholder.typicode.com/posts/${id}`,
+    data
+  );
+  return response
 }
 export async function deletePost(id: number) {
   await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);

@@ -62,7 +62,6 @@ const Posts: React.FC = () => {
   const handleEdit = (values: Post) => {
     (async () => {
       try {
-        console.log(values, "edit");
         await updatePost(values, values.id);
         dispatch(upPost(values));
 
